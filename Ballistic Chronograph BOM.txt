@@ -1,0 +1,13 @@
+TSHF5410  LED (emitter)  x16
+30 Ohm 1/2W Resistor x16
+LM7809 Regulator x2
+LM339 Comparator x4
+16 Sensors:
+LTR-323DB LED (sensor)
+1K Potentiometer
+330K Resistor
+24K Resistor
+0.22uf Capacitor
+5-40V Boost Regulator
+2200uf 25V Capacitor
+Various wires, resistors, capacitors

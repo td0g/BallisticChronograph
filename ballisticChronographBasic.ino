@@ -5,7 +5,8 @@
   www.td0g.ca
 
 DESCRIPTION:
-  Very basic firmware for an Arduino-based ballistic chronograph.  Connect the Arduino to a PC and it will automatically read out the speed.
+  Very basic firmware for an Arduino-based ballistic chronograph.  Connect the Arduino to a PC and it will automatically read out the speed.  
+  Can also display the speed on an LCD display using the LiquidCrystal library.
 
 LICENSE:
   This program is free software: you can redistribute it and/or modify
@@ -22,17 +23,31 @@ LICENSE:
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+//SETUP ####################################################################################
 //Definitions - PLEASE SET UP BEFORE USING
 #define BAUD 9600           //Serial port baud rate
 #define GATE_SEPARATION 500 //Distance in mm
+#define TIMEOUT 2000        //Longest time something should take to cross both gates (in milliseconds)
 #define GATE_A_PIN  PIN_A0  //Choose from the pins defined below
 #define GATE_A_PIN2 A0      //Same as above, just write the pin in normal Arduino
 #define GATE_B_PIN  PIN_A1  //Choose from the pins defined below
 #define GATE_B_PIN2 A1      //Same as above, just write the pin in normal Arduino
-#define TIMEOUT 2000        //Longest time something should take to cross both gates (in milliseconds)
 #define ACTIVE_LOW          //Active low means 0V is a gate trigger.  COMMENT OUT for active high (5V = gate is triggered).  
+#define PULLUP              //Gate pins are pulled up.  COMMENT OUT to disable pullup resistors.
+
+//LCD Display - PLEASE SET UP BEFORE USING
+#define LCD		                      //Comment out to disable the LCD output
+#define LCD_PINS 8, 9, 4, 5, 6, 7   //RS, EN, D4, D5, D6, D7
+
+//END OF SETUP ##############################################################################
+
+//include the LiquidCrystal library:
+  #ifdef LCD
+    #include <LiquidCrystal.h>
+    LiquidCrystal lcd(LCD_PINS);
+  #endif
   
-//include the library code:
+//include the Timer2 library:
   #include <eRCaGuy_Timer2_Counter.h> //Get this from https://www.electricrcaircraftguy.com/2014/02/Timer2Counter-more-precise-Arduino-micros-function.html
 
 //Pin Selection Macros
@@ -62,11 +77,17 @@ LICENSE:
   #define PIN_A5 PIN_19
 
 void setup() {
-  Serial.begin(BAUD);   
-  pinMode(GATE_A_PIN2, INPUT_PULLUP);        //Setup input and output pins
-  pinMode(GATE_B_PIN2, INPUT_PULLUP);
-  Serial.println("Ballistic Chronograph - READY");  //Hello world message
+  #ifdef PULLUP
+    pinMode(GATE_A_PIN2, INPUT_PULLUP);
+    pinMode(GATE_B_PIN2, INPUT_PULLUP);
+  #endif
+  #ifdef LCD
+    lcd.setCursor(0, 0);
+    lcd.print("Ready!");
+  #endif
   timer2.setup();
+  Serial.begin(BAUD);   
+  Serial.println("Ballistic Chronograph - READY");  //Hello world message
 }
 
 void loop(){
@@ -106,6 +127,13 @@ void loop(){
     Serial.println((stopGate - startGate) / 2);
     Serial.print("  Speed in m/s: ");
     Serial.print(objectSpeed);
+    #ifdef LCD
+      timer2.revert_to_normal();
+      lcd.setCursor(0, 1);
+      lcd.print(objectSpeed);
+      lcd.print(" m/s");
+      timer2.setup();
+    #endif
     objectSpeed *= 3.2808;
     Serial.print("  (");
     Serial.print(objectSpeed);

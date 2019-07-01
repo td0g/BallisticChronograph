@@ -1,5 +1,5 @@
 # BallisticChronograph
-Data used for Arduino-based Ballistic Chronograph
+Data repository for Arduino-based Ballistic Chronograph
 
 ## ballisticChronoBasic
 A very simple ballistic chronograph program.  It reads out the speed over UART Serial to a PC.

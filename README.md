@@ -1,6 +1,9 @@
 # BallisticChronograph
 Data repository for Arduino-based Ballistic Chronograph
 
+## LightGateSensor
+Plans to build the sensors for the ballistic chronograph.  The sensors are also available for purchase SOON.
+
 ## ballisticChronoBasic
 A very simple ballistic chronograph program.  It reads out the speed over UART Serial to a PC.
 
@@ -17,5 +20,5 @@ If you have an LCD display connected, the code will automatically display the sp
 ## ballisticChronoComplete
 //To Be Updated
 
-## _2016-12-15_BallisticChronograph_V3
+## \_2016-12-15_BallisticChronograph_V3
 Depricated, please do not use except for reference.

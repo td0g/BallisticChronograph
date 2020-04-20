@@ -1,8 +1,5 @@
 # BallisticChronograph
-Data repository for Arduino-based Ballistic Chronograph
-
-## LightGateSensor
-Plans to build the sensors for the ballistic chronograph.  The sensors are also available for purchase SOON.
+Data repository for Arduino-based Ballistic Chronograph.  For the MK2, pleaes see [https://github.com/td0g/ballistic_chronograph_mk2/](https://github.com/td0g/ballistic_chronograph_mk2/)
 
 ## ballisticChronoBasic
 A very simple ballistic chronograph program.  It reads out the speed over UART Serial to a PC.
@@ -17,11 +14,8 @@ If your chronograph needs the Arduino's pullup resistors, leave PULLUP alone.  O
 
 If you have an LCD display connected, the code will automatically display the speed on the display.  PLEASE BE CAREFUL that the LCD_PINS aren't the same as the GATE_PINS.  If you aren't using an LCD, just comment it out (//LCD) to be safe.
 
-## ballisticChronoComplete
+## ballisticChronoLCD
 //To Be Updated
-
-## \_2016-12-15_BallisticChronograph_V3
-Depricated, please do not use except for reference.
 
 ## License
 

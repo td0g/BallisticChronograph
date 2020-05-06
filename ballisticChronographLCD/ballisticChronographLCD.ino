@@ -1,13 +1,9 @@
 /*
   Firmware for Ballistic Chronograph
   Written by Tyler Gerritsen
-  vtgerritsen@gmail.com
+  tyler@td0g.ca
   www.td0g.ca
 
-DESCRIPTION:
-  Girmware for an Arduino-based ballistic chronograph.  Connect the Arduino to an LCD Keypad shield or PC and it will  read out the speed.  
-
-LICENSE:
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -20,7 +16,18 @@ LICENSE:
 
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+
+CHANGELOG
+1.0 2018-01-01
+  Functional
+  
+1.1 2020-04-15
+  Added Clock Calibration screen
+
+1.2 2020-05-06
+  Fixed clock calibration bug
+  Displays gate separation in calibration screen
+*/
 
 /*
  Commands:
